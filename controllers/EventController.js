@@ -66,7 +66,7 @@ const deleteEventById = asyncFunction(async (req, res) => {
 
 // get all events
 const getAllEvents = asyncFunction(async (req, res) => {
-    let allEvents = await Event.find({}).populate('organizer', '-password').sort({ "date": -1 });
+    let allEvents = await Event.find({}).populate('organizer', '-password').sort({ "date": 1 });
 
     // return response
     return res.json(allEvents);
