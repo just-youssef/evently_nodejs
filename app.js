@@ -20,7 +20,9 @@ const errorMW = require("./middlewares/errorMW");
 const app=express();
 
 // using third party modules
-app.use(cors());
+app.use(cors({
+    origin: ['http://localhost:3000',]
+}));
 app.use(helmet());
 app.use(cookieParser());
 app.use(express.urlencoded({extended: true}));
