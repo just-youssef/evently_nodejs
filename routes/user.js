@@ -1,15 +1,13 @@
 const express = require("express");
 const router = express.Router();
 const UserController = require("../controllers/UserController");
-const RegisterValidatorMW = require("../middlewares/RegisterValidatorMW");
-const LoginValidatorMW = require("../middlewares/LoginValidatorMW");
 const UserPermissionMW = require("../middlewares/UserPermissionMW");
 
 // register: create user
-router.post('/register', RegisterValidatorMW, UserController.createUser);
+router.post('/register', UserController.createUser);
 
 // login: authenticate user
-router.post("/login", LoginValidatorMW, UserController.authUser);
+router.post("/login", UserController.authUser);
 
 // update user by id
 router.put("/update/:id", UserPermissionMW, UserController.updateUserById);

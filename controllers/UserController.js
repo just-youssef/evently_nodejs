@@ -13,7 +13,7 @@ const createUser = asyncFunction(async (req, res) => {
     let hashedPassword = await bcrypt.hash(req.body.password, saltRounds);
 
     user = new User({
-        username: req.body.username,
+        full_name: req.body.full_name,
         email: req.body.email,
         password: hashedPassword,
     });

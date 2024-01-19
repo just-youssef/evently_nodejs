@@ -28,7 +28,7 @@ const checkTicketBooked = asyncFunction(async (req, res) => {
 
 // get list of who is going to chosen event
 const getWhoIsGoing = asyncFunction(async (req, res) => {
-    let tickets = await Ticket.find({event: req.params.eventID}).populate('user', 'username email -_id').select('-_id -__v -event');
+    let tickets = await Ticket.find({event: req.params.eventID}).populate('user', 'full_name email -clerk_id').select('-_id -__v -event');
     const whoIsGoing = tickets.map(ticket => ticket.user);
 
     return res.json(whoIsGoing);

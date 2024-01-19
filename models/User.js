@@ -3,10 +3,14 @@ const validator = require('validator');
 const jwt = require('jsonwebtoken');
 
 const UserSchema = new mongoose.Schema({
-    'username': {
+    'clerk_id': {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true
+    },
+    'full_name': {
         type: String,
         trim: true,
-        required: [true, "username field is required"],
+        required: [true, "full_name field is required"],
         validate: { validator: value => /^[a-zA-Z0-9_-]{3,20}$/.test(value) }
     },
     'email': {
@@ -20,11 +24,11 @@ const UserSchema = new mongoose.Schema({
         type: String,
         required: [true, "password field is required"],
     },
-});
+}, { _id: false });
 
 UserSchema.methods.genAuthToken = function () {
     // generate jwt
-    return jwt.sign({ userID: this._id }, process.env.JWT_SECRET);
+    return jwt.sign({ userID: this.clerk_id }, process.env.JWT_SECRET);
 }
 
 module.exports = mongoose.model('User', UserSchema);
