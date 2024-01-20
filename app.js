@@ -21,7 +21,7 @@ const app=express();
 
 // using third party modules
 app.use(cors({
-    origin: ['http://localhost:3000', 'https://evently-frontend-nextjs.onrender.com']
+    origin: ['http://localhost:3000', 'https://evently-frontend-nextjs.onrender.com', 'https://evently-frontend-reactjs-kinde-auth.onrender.com']
 }));
 app.use(helmet());
 app.use(cookieParser());
