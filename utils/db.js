@@ -1,7 +1,7 @@
 const mongoose=require('mongoose');
 
 mongoose.connect(process.env.MONGODB_URI, {
-    dbName: 'evently',
+    dbName: 'evently_clerk',
 }).then(()=>{
     console.log('MongoDB Connected..!');
 }).catch((err)=>{

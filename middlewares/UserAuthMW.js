@@ -1,19 +1,21 @@
 const jwt = require('jsonwebtoken');
+const User = require("../models/User");
 
-module.exports = (req, res, nxt) => {
+module.exports = async(req, res, nxt) => {
     // get token
     let token = req.header('x-auth-token');
     if (!token) return res.status(401).json({ error: "access denied" });
-
-    // verify token
+    // decode token
     try {
-        let payload=jwt.verify(token, process.env.JWT_SECRET);
+        let payload=jwt.decode(token);
 
         // if token user is not authenticated
-        if(!payload.userID) return res.status(401).json({ error: "access denied" });
+        let user = await User.findOne({ clerk_id: payload.sub }).exec();
+        if(!user) return res.status(401).json({ error: "access denied" });
 
         // if user is authenticated
-        req.userID = payload.userID
+        req.userID = user._id
+        req.clerkID = user.clerk_id
         nxt();
     } catch(err) {
         console.log(err.message);
