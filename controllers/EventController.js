@@ -55,10 +55,11 @@ const deleteEventById = asyncFunction(async (req, res) => {
     if (!event) return res.status(404).json({ error: "event not found..!" });
 
     // check if req user is the organizer user
-    if (req.userID !== event.organizer.clerk_id.toString()) return res.status(401).json({ error: "access denied" });
+    if (req.kindeID !== event.organizer.kinde_id) return res.status(401).json({ error: "access denied" });
 
     // delete event
     await Event.findByIdAndDelete(req.params.id);
+    console.log('event deleted..!');
 
     // return response
     return res.json({ message: "event deleted..!" })

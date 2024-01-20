@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const validator = require('validator');
 
 const UserSchema = new mongoose.Schema({
-    clerk_id: {
+    kinde_id: {
         type: String,
         required: true,
         unique: true

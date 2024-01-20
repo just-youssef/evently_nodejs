@@ -10,12 +10,12 @@ module.exports = async(req, res, nxt) => {
         let payload=jwt.decode(token);
 
         // if token user is not authenticated
-        let user = await User.findOne({ clerk_id: payload.sub }).exec();
+        let user = await User.findOne({ kinde_id: payload.sub }).exec();
         if(!user) return res.status(401).json({ error: "access denied" });
 
         // if user is authenticated
         req.userID = user._id
-        req.clerkID = user.clerk_id
+        req.kindeID = user.kinde_id
         nxt();
     } catch(err) {
         console.log(err.message);
