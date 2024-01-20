@@ -7,15 +7,9 @@ const UserAuthMW = require("../middlewares/UserAuthMW");
 router.post("/auth", UserController.getOrCreateUser);
 
 // delete user by id
-router.delete("/delete/:id", UserAuthMW, UserController.deleteUserByKindeId);
-
-// delete user by kinde_id
-router.delete("/delete/kinde/:id", UserAuthMW, UserController.deleteUserByKindeId);
+router.delete("/delete/:id", UserAuthMW, UserController.deleteUserById);
 
 // get user by id
 router.get("/:id", UserAuthMW, UserController.getUserById);
-
-// get _id by kinde_id
-router.get("/kinde/:id", UserAuthMW, UserController.getUserIdBykindeId);
 
 module.exports = router;
