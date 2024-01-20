@@ -1,4 +1,3 @@
-const { mongoose } = require("mongoose");
 const User = require("../models/User");
 const asyncFunction = require("../utils/asyncFunction");
 
@@ -7,7 +6,7 @@ const getOrCreateUser = asyncFunction(async (req, res) => {
     // check if user exists
     let user = await User.findOne({ kinde_id: req.body.kinde_id }).exec();
     if (user) return res.json(user._id);
-
+    
     user = new User({
         kinde_id: req.body.kinde_id,
         full_name: req.body.full_name,
