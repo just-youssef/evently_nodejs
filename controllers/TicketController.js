@@ -21,9 +21,9 @@ const bookTicket = asyncFunction(async (req, res) => {
 // check if ticket booked for a specific event
 const checkTicketBooked = asyncFunction(async (req, res) => {
     let ticket = await Ticket.findOne({ user: req.userID, event: req.params.eventID }).exec();
-    if (ticket) return res.status(200).json({message: 'ticked is already booked'});
+    if (ticket) return res.send(true);
     
-    return res.status(404).json({error: 'not found'});
+    return res.send(false);
 })
 
 // get list of who is going to chosen event

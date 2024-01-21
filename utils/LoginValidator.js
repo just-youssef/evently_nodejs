@@ -5,7 +5,7 @@ require("ajv-errors")(ajv);
 const schema = {
     type: "object",
     properties: {
-        email: { type: "string", pattern: ".+\@.+\..+" },
+        email: { type: "string", pattern: "^.+\@.+\..+$" },
         password: { type: "string", minLength: 5 },
     },
     required: ["email", "password"],
